@@ -14,7 +14,7 @@ const Login = () => {
         console.log("📤 Sending data:", { email, password });
         await axios.post('http://localhost:8000/api/auth/login', { email, password }, { withCredentials: true });
           alert('Logged in');
-          navigate('/'); // توجيه المستخدم إلى صفحة الهوم
+          navigate('/orders'); // توجيه المستخدم إلى صفحة الهوم
 
       } catch (error) {
         console.error("Error:", error.response ? error.response.data : error.message);
@@ -23,33 +23,36 @@ const Login = () => {
   };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-                <form onSubmit={handleSubmit}>
-                <input
-    type="email" // تأكد من أن هذا هو النوع الصحيح
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder="Your email"
-    required
-    className="w-full p-2 mb-4 border border-gray-300 rounded"
-/>
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-500 to-purple-700 p-4">
+            <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300">
+                <h2 className="text-3xl font-extrabold text-center text-purple-700 mb-6">Login</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Your email"
+                        required
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
                     <input
                         type="password"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                         required
-                        className="w-full p-2 mb-4 border border-gray-300 rounded"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
-                    <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    <button
+                        type="submit"
+                        className="w-full p-3 text-white rounded-lg font-semibold transition-all duration-300 bg-purple-600 hover:bg-purple-800 hover:shadow-lg"
+                    >
                         Login
                     </button>
                 </form>
-                <p className="mt-4 text-center">
+                <p className="mt-4 text-center text-gray-700">
                     Don't have an account?{' '}
-                    <Link to="/register" className="text-blue-500 hover:underline">
-                        Register
-                    </Link>
+                    <Link to="/register" className="text-purple-600 hover:text-purple-800 font-semibold">Register</Link>
                 </p>
             </div>
         </div>
